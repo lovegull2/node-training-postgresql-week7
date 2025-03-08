@@ -14,17 +14,26 @@ const isNotValidUuid = (value) => {
 
 const isNotValidUserName = (value) => {
     const userNamePattern = /^[\u4e00-\u9fa5a-zA-Z0-9]{2,10}$/
-    return !userNamePattern.test(value)
+    if (isNotValidString(value))
+        return !userNamePattern.test(value)
+    else
+        return false
 }
 
 const isNotValidEmail = (value) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    return !emailPattern.test(value)
+    if (isNotValidString(value))
+        return !emailPattern.test(value)
+    else
+        return false
 }
 
 const isNotValidPassword = (value) => {
     const passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/
-    return !passwordPattern.test(value)
+    if (isNotValidString(value))
+        return !passwordPattern.test(value)
+    else
+        return false
 }
 
 const isNotValidUrl = (value) => {

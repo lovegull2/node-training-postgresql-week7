@@ -40,10 +40,20 @@ app.use('/api/courses', courseRouter)
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   req.log.error(err)
-  res.status(500).json({
+
+  let statusCode = 500
+  const errorResponse = {
     status: 'error',
     message: '伺服器錯誤:' + err.message
-  })
+  }
+
+  if (err.status) {
+    statusCode = err.status;
+    errorResponse.status = 'failed';
+    errorResponse.message = err.message;
+  }
+
+  res.status(statusCode).json(errorResponse)
 })
 
 module.exports = app

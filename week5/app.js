@@ -44,13 +44,12 @@ app.use((err, req, res, next) => {
   let statusCode = 500
   const errorResponse = {
     status: 'error',
-    message: '伺服器錯誤:' + err.message
+    message: '伺服器錯誤'
   }
 
   if (err.status) {
     statusCode = err.status;
     errorResponse.status = 'failed';
-    errorResponse.message = err.message;
   }
 
   res.status(statusCode).json(errorResponse)
